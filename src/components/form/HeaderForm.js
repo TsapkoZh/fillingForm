@@ -37,7 +37,7 @@ class HeaderForm extends Component {
         break;
 
       case 'number':
-        if (value.length) {
+        if (value || !value) {
           numberValid = value >= 1;
           fieldValidationErrors.number = numberValid ? '' : 'Введите номер (больше ноля)*';
         }
