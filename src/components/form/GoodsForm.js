@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-// import './form.css'
-
 class GoodsForm extends Component {
   state = {
     formErrors: {
@@ -29,19 +27,15 @@ class GoodsForm extends Component {
 
     switch (fieldName) {
       case 'nameProduct':
-        if (value.length > 20) {
-          nameProductValid = false
-        fieldValidationErrors.nameProduct = 'Не длиннее двадцати символов*';
-        } else if (value || !value) {
+        if (value || !value) {
           nameProductValid = value.length >= 1;
           fieldValidationErrors.nameProduct = nameProductValid ? '' : 'Введите наименование товара*';
         }
         break;
 
       case 'quantity':
-        if (value.length > 8) {
+        if (value.length > 5) {
           quantityValid = false;
-          fieldValidationErrors.quantity = 'Не длиннее восьми символов*';
         } else if (value || !value) {
           quantityValid = value > 0;
           fieldValidationErrors.quantity = quantityValid ? '' : 'Введите количество*';
@@ -51,10 +45,7 @@ class GoodsForm extends Component {
       case 'price':
         const f = x => ( (x.toString().includes('.')) ? (x.toString().split('.').pop().length) : (0) );
 
-        if (value.length > 8) {
-          priceValid = false;
-          fieldValidationErrors.price = 'Не длиннее восьми символов*';
-        } else if (f(value) > 2) {
+        if (f(value) > 2) {
           priceValid = false;
           fieldValidationErrors.price = 'Не больше двух знаков после запятой*';
         } else if (value || !value) {
@@ -107,6 +98,12 @@ class GoodsForm extends Component {
 		event.currentTarget.value = '';
   }
 
+  maxLengthCheck = (object) => {
+    if (object.target.value.length > object.target.maxLength) {
+     object.target.value = object.target.value.slice(0, object.target.maxLength)
+      }
+  }
+
   render() {
     const {
       formErrors,
@@ -119,14 +116,15 @@ class GoodsForm extends Component {
     const { allProducts } = this.props;
 
     return (
-      <form 
-        onSubmit={this.handleSubmit}
-        className='wrapper'
-      >
+        <form 
+          onSubmit={this.handleSubmit}
+          className='wrapper'
+        >
         <label className='cap capBorder'>
           <input
             name='nameProduct'
             type='text'
+            maxLength='20'
             onChange={this.handleChange}
             className={nameProductValid ? 'entryField true' : 'entryField'}
             placeholder='наименование товара:'
@@ -136,6 +134,8 @@ class GoodsForm extends Component {
           <input
             name='quantity'
             type='number'
+            maxLength = '4'
+            onInput={this.maxLengthCheck}
             onChange={this.handleChange}
             className={quantityValid ? 'entryField true' : 'entryField'}
             placeholder='количество:'
@@ -145,6 +145,8 @@ class GoodsForm extends Component {
           <input 
             name='price'
             type='number'
+            maxLength = '6'
+            onInput={this.maxLengthCheck}
             onChange={this.handleChange}
             step='0.01' 
             min='0' 

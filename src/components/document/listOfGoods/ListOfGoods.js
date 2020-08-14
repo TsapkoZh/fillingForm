@@ -17,8 +17,13 @@ class ListOfGoods extends Component {
     const price = products.map(p => Number(p.price))
 
     return(
-      <div>
-        <table className='tableHeader'>
+      <div className='tableWraper'>
+        <table className='table'>
+          <colgroup>
+            <col className='col1' />
+            <col className='col2' />
+          </colgroup>
+
           <tbody>
             <tr>
               <td className='tableCell'>

@@ -38,6 +38,7 @@
 .invoiceNumber {
   display: block;
   width: 90px;
+  height: 28px;
   padding-left: 10px;
   border-bottom: 1px solid $black;
 }
@@ -50,6 +51,7 @@
 .toWhomField {
   display: block;
   width: 450px;
+  height: 16px;
   margin-left: 5px;
   padding-left: 10px;
   border-bottom: 1px solid $black;
@@ -63,6 +65,7 @@
 .fromWhomField {
   display: block;
   width: 395px;
+  height: 16px;
   margin-left: 5px;
   padding-left: 10px;
   border-bottom: 1px solid $black;

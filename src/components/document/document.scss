@@ -1,8 +1,8 @@
 @import './styles/color.scss';
 
-.wrapper {
+.wrapperDocument {
   display: flex;
-  width: 650px;
+  flex-direction: column;
 }
 
 .document {

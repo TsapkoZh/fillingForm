@@ -8,19 +8,15 @@ import Footer from './footer/Footer.js'
 import './document.scss'
 
 class Document extends Component {
-  clearLS = () => {
-    localStorage.clear();
-    window.location.reload(false);
-  }
-
   render() {
     const {
       documentHeader,
       products,
+      clearDoc,
     } = this.props;
 
     return (
-      <div className='wrapper'>
+      <div className='wrapperDocument'>
         <div className='document'>
           <Header 
             documentHeader={documentHeader}
@@ -30,8 +26,9 @@ class Document extends Component {
           />
           <Footer />
         </div>
+        
         <button 
-          onClick={this.clearLS}
+          onClick={clearDoc}
           className='btnClear'
         >
           очистить

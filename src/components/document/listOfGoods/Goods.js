@@ -12,15 +12,15 @@ class Goods extends Component {
 
     return(
       <tr>
-        <td className='tableCell'>
+        <td className='tableCell NumberInOrder'>
           {index + 1}
         </td>
 
-        <td className='tableCell'>{nameProduct}</td>
+        <td className='tableCell nameProduct'>{nameProduct}</td>
 
-        <td className='tableCell'>{quantity}</td>
+        <td className='tableCell quantity'>{quantity}</td>
         
-        <td className='tableCell'>{price}</td>
+        <td className='tableCell price'>{price}</td>
 
         <td className='tableCell right'>{quantity * price}</td>
       </tr>

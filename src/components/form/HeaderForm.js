@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-// import './form.css'
-
 class HeaderForm extends Component {
   state = {
     formErrors: {
@@ -20,6 +18,7 @@ class HeaderForm extends Component {
   handleChange = (event) => {
     let nam = event.target.name;
     let val = event.target.value;
+
     this.setState({[nam]: val},
                   () => { this.validateField(nam, val) })
   }
@@ -38,35 +37,28 @@ class HeaderForm extends Component {
         break;
 
       case 'number':
-        if (value.length >= 7) {
-          numberValid = false; 
-          fieldValidationErrors.number =  'Не длиннее семи символов*';
-        } else if (value || !value) {
+        if (value.length) {
           numberValid = value >= 1;
           fieldValidationErrors.number = numberValid ? '' : 'Введите номер (больше ноля)*';
         }
         break;
 
       case 'toWhom':
-        if (value.length >= 50) {
-          toWhomValid = false;
-          fieldValidationErrors.toWhom = 'Не длиннее пятидесяти символов*';
-        } else if (value || !value) {
+        if (value.length) {
           toWhomValid = value.length >= 2;
           fieldValidationErrors.toWhom = toWhomValid ? '' : 'Не короче двух символов*';
         }
         break;
 
       case 'fromWhom':
-        if (value.length >= 50) {
-          fromWhomValid = false;
-          fieldValidationErrors.fromWhom =  'Не длиннее пятидесяти символов*';
-        } else if (value || !value) {
+        if (value.length) {
           fromWhomValid = value.length >= 2;
           fieldValidationErrors.fromWhom = fromWhomValid ? '' : 'Не короче двух символов*';
         }
         break;
     }
+
+    this.handleKeyPress()
 
     this.setState({formErrors: fieldValidationErrors,
       dateValid: dateValid,
@@ -92,9 +84,8 @@ class HeaderForm extends Component {
                   });
   }
 
-  handleSubmit = event => {
+  handleKeyPress = () => {
     const { 
-      formValid, 
       date, 
       number, 
       toWhom, 
@@ -107,11 +98,13 @@ class HeaderForm extends Component {
       toWhom,
       fromWhom,
     }
-
-    event.preventDefault();
-    if (formValid) {
       this.props.addDate(newDate);
-    }
+  }
+
+  maxLengthCheck = (object) => {
+    if (object.target.value.length > object.target.maxLength) {
+     object.target.value = object.target.value.slice(0, object.target.maxLength)
+      }
   }
 
   render() {
@@ -138,6 +131,8 @@ class HeaderForm extends Component {
           <input 
             name='number'
             type='number'
+            maxLength = '5'
+            onInput={this.maxLengthCheck}
             onChange={this.handleChange}
 					  className={numberValid ? 'entryField true' : 'entryField'}
             placeholder='номер накладной:'
@@ -147,6 +142,7 @@ class HeaderForm extends Component {
           <input 
             name='toWhom'
             type='text'
+            maxLength = '50'
             onChange={this.handleChange}
 					  className={toWhomValid ? 'entryField true' : 'entryField'}
             placeholder='кому:'
@@ -156,20 +152,13 @@ class HeaderForm extends Component {
           <input 
             name='fromWhom'
             type='text'
+            maxLength = '50'
             onChange={this.handleChange}
 					  className={fromWhomValid ? 'entryField true' : 'entryField'}
             placeholder='от кого:'
           />
           <p className='error'>{formErrors.fromWhom}</p>
         </label>
-
-        <button 
-          onClick={this.handleSubmit}
-          className={!formValid ? 'btnWriteDownDisable' : 'btnWriteDown'}
-          disabled={!formValid}
-        >
-          сохранить
-        </button>
       </form>
     )
   }

@@ -7,7 +7,7 @@ import Form from './form/Form.js';
 import Document from './document/Document.js';
 
 import { addDate } from '../redux/documentHeader/actions.js';
-import { addProduct } from '../redux/product/actions.js';
+import { addProduct, clearDoc } from '../redux/product/actions.js';
 
 import './fillingForm.scss';
 
@@ -18,7 +18,8 @@ class FillingForm extends Component {
       addProduct, 
       documentHeader, 
       products, 
-      allProducts, 
+      allProducts,
+      clearDoc, 
     } = this.props;
 
     return (
@@ -31,6 +32,7 @@ class FillingForm extends Component {
         <Document 
           documentHeader={documentHeader}
           products={products}
+          clearDoc={clearDoc}
         />
       </div>
     ) 
@@ -47,6 +49,7 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators({
     addDate,
     addProduct,
+    clearDoc,
   }, dispatch);
   
   FillingForm.propTypes = {
