@@ -4,22 +4,26 @@ import PropTypes from 'prop-types';
 import HeaderForm from './HeaderForm.js';
 import GoodsForm from './GoodsForm.js';
 
-import './form.scss'
+import s from './form.module.scss'
 
 class Form extends Component {
   render() {
   const { 
     addDate, 
+    addNumber,
+    addToWhom,
+    addFromWhom,
     addProduct, 
-    allProducts 
+    allProducts, 
   } = this.props;
 
     return (
-      <div
-        className='wrapper'
-      >
+      <div className={s.formWrapper}>
           <HeaderForm 
             addDate={addDate}
+            addNumber={addNumber}
+            addToWhom={addToWhom}
+            addFromWhom={addFromWhom}
           />
           <GoodsForm 
             addProduct={addProduct}
@@ -32,6 +36,9 @@ class Form extends Component {
 
 Form.propTypes = {
   addDate: PropTypes.func,
+  addNumber: PropTypes.func,
+  addToWhom: PropTypes.func,
+  addFromWhom: PropTypes.func,
   addProduct: PropTypes.func,
   allProducts: PropTypes.number.isRequired,
 }

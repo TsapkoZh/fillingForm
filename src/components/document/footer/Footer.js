@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 
-import './footer.scss';
+import s from './footer.module.scss';
 
 class Footer extends Component {
   render() {
     return(
-      <div className='footer'>
+      <div className={s.footer}>
         М.П.
-        <div className='signature'>
-          Сдал <span className='line'>(расшифровка подписи)</span>
+        <div className={s.signature}>
+          Сдал <span className={s.line}>(расшифровка подписи)</span>
         </div>
 
-        <div className='signature'>
-          Принял <span className='line'>(расшифровка подписи)</span>
+        <div className={s.signature}>
+          Принял <span className={s.line}>(расшифровка подписи)</span>
         </div>
       </div>
     )

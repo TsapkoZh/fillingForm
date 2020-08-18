@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Goods from './Goods.js'
 
-import './listOfGoods.scss'
+import s from './listOfGoods.module.scss'
 
 class ListOfGoods extends Component {
 
@@ -17,34 +17,35 @@ class ListOfGoods extends Component {
     const price = products.map(p => Number(p.price))
 
     return(
-      <div className='tableWraper'>
-        <table className='table'>
+      <div className={s.tableWraper}>
+        <table className={s.table}>
           <colgroup>
-            <col className='col1' />
-            <col className='col2' />
+            <col className={s.col1} />
+            <col className={s.col2} />
+            <col className={s.col3} span='3' />
           </colgroup>
 
           <tbody>
             <tr>
-              <td className='tableCell'>
+              <td className={s.tableCell}>
                 №<br />
                 п/п
               </td>
 
-              <td className='tableCell'>
+              <td className={s.tableCell}>
                 Наименование товара
               </td>
 
-              <td className='tableCell'>
+              <td className={s.tableCell}>
                 Кол-во
               </td>
 
-              <td className='tableCell'>
+              <td className={s.tableCell}>
                 Цена<br />
                 руб.,коп.
               </td>
 
-              <td className='tableCell right'>
+              <td className={`${s.tableCell} ${s.rightBorder}`}>
                 Сумма<br />
                 руб.,коп.
               </td>
@@ -61,21 +62,21 @@ class ListOfGoods extends Component {
               ))
             }
             <tr>
-              <td className='tableCell right tableCellTotal'></td>
+              <td className={`${s.tableCell} ${s.rightBorder} ${s.tableCellTotal}`}></td>
 
-              <td className='tableCell tableCellTotal'>
+              <td className={`${s.tableCell} ${s.tableCellTotal}`}>
                 Итого . . .
               </td>
 
-              <td className='tableCell'>
+              <td className={s.tableCell}>
                 {this.sum(quantity)}
               </td>
 
-              <td className='tableCell'>
+              <td className={s.tableCell}>
                 {this.sum(price)}
               </td>
 
-              <td className='tableCell right'>
+              <td className={`${s.tableCell} ${s.rightBorder}`}>
                 {this.sum(price) * this.sum(quantity)}
               </td>
             </tr>

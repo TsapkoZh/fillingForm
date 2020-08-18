@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import s from './form.module.scss'
+
 class GoodsForm extends Component {
   state = {
     formErrors: {
@@ -98,7 +100,7 @@ class GoodsForm extends Component {
 		event.currentTarget.value = '';
   }
 
-  maxLengthCheck = (object) => {
+  maxLengthCheck = object => {
     if (object.target.value.length > object.target.maxLength) {
      object.target.value = object.target.value.slice(0, object.target.maxLength)
       }
@@ -118,18 +120,18 @@ class GoodsForm extends Component {
     return (
         <form 
           onSubmit={this.handleSubmit}
-          className='wrapper'
+          className={s.formWrapper}
         >
-        <label className='cap capBorder'>
+        <label className={`${s.cap} ${s.capBorder}`}>
           <input
             name='nameProduct'
             type='text'
             maxLength='20'
             onChange={this.handleChange}
-            className={nameProductValid ? 'entryField true' : 'entryField'}
+            className={nameProductValid ? `${s.entryField} ${s.entryFieldTrue}` : `${s.entryField}`}
             placeholder='наименование товара:'
           />
-          <p className='error'>{formErrors.nameProduct}</p>
+          <p className={s.error}>{formErrors.nameProduct}</p>
 
           <input
             name='quantity'
@@ -137,10 +139,10 @@ class GoodsForm extends Component {
             maxLength = '4'
             onInput={this.maxLengthCheck}
             onChange={this.handleChange}
-            className={quantityValid ? 'entryField true' : 'entryField'}
+            className={quantityValid ? `${s.entryField} ${s.entryFieldTrue}` : `${s.entryField}`}
             placeholder='количество:'
           />
-          <p className='error'>{formErrors.quantity}</p>
+          <p className={s.error}>{formErrors.quantity}</p>
 
           <input 
             name='price'
@@ -150,20 +152,20 @@ class GoodsForm extends Component {
             onChange={this.handleChange}
             step='0.01' 
             min='0' 
-            className={priceValid ? 'entryField true' : 'entryField'}
+            className={priceValid ? `${s.entryField} ${s.entryFieldTrue}` : `${s.entryField}`}
             placeholder='цена: 0,00р.'
           />
-          <p className='error'>{formErrors.price}</p>
+          <p className={s.error}>{formErrors.price}</p>
         </label>
 
         <button 
           onClick={this.handleSubmit}
           disabled={!formValid || allProducts > 19}
-          className={!formValid || allProducts > 19 ? 'btnWriteDownDisable' : 'btnWriteDown'}
+          className={!formValid || allProducts > 19 ?  `${s.btnWriteDown} ${s.btnWriteDownDisable}` : `${s.btnWriteDown} ${s.btnWriteDownActive}`}
         >
           добавить товар
         </button>
-        <p className={allProducts > 19 ? 'error errorBtn' : 'show'}>
+        <p className={allProducts > 19 ? `${s.error} ${s.errorBtn}` : `${s.hideBtnError}`}>
           Не больше двадцати наименований*
         </p>
       </form>

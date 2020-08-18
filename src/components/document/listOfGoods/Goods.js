@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import s from './listOfGoods.module.scss'
+
 class Goods extends Component {
   render() {
     const {  
@@ -12,17 +14,17 @@ class Goods extends Component {
 
     return(
       <tr>
-        <td className='tableCell NumberInOrder'>
+        <td className={`${s.tableCell} ${s.NumberInOrder}`}>
           {index + 1}
         </td>
 
-        <td className='tableCell nameProduct'>{nameProduct}</td>
+        <td className={`${s.tableCell} ${s.nameProduct}`}>{nameProduct}</td>
 
-        <td className='tableCell quantity'>{quantity}</td>
+        <td className= {`${s.tableCell} ${s.quantity}`}>{quantity}</td>
         
-        <td className='tableCell price'>{price}</td>
+        <td className={`${s.tableCell} ${s.price}`}>{price}</td>
 
-        <td className='tableCell right'>{quantity * price}</td>
+        <td className={`${s.tableCell} ${s.rightBorder}`}>{quantity * price}</td>
       </tr>
     )
   }

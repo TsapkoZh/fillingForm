@@ -1,4 +1,5 @@
-@import './styles/color.scss';
+@import '../styles/color.scss';
+@import '../styles/media.scss';
 
 .wrapperDocument {
   display: flex;
@@ -15,6 +16,13 @@
   background-color: $white;
   margin-top: 10px;
   z-index: 10;
+
+  @include _530 {
+    width: 84vw;
+    height: 135vw;
+    padding: 6vw;
+    font-size: 2vw;
+  }
 }
 
 .btnClear {

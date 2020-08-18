@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Header from './header/Header.js';
-import ListOfGoods from './listOfGoods/ListOfGoods.js'
-import Footer from './footer/Footer.js'
+import Header from './Header/Header.js';
+import ListOfGoods from './ListOfGoods/ListOfGoods.js'
+import Footer from './Footer/Footer.js'
 
-import './document.scss'
+import s from './document.module.scss'
 
 class Document extends Component {
   render() {
@@ -16,8 +16,8 @@ class Document extends Component {
     } = this.props;
 
     return (
-      <div className='wrapperDocument'>
-        <div className='document'>
+      <div className={s.wrapperDocument}>
+        <div className={s.document}>
           <Header 
             documentHeader={documentHeader}
           />
@@ -29,7 +29,7 @@ class Document extends Component {
         
         <button 
           onClick={clearDoc}
-          className='btnClear'
+          className={s.btnClear}
         >
           очистить
         </button>

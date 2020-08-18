@@ -3,19 +3,27 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
-import Form from './form/Form.js';
-import Document from './document/Document.js';
+import Form from './Form/Form.js';
+import Document from './Document/Document.js';
 
-import { addDate } from '../redux/documentHeader/actions.js';
+import { 
+  addDate, 
+  addNumber, 
+  addToWhom, 
+  addFromWhom,
+} from '../redux/documentHeader/actions.js';
 import { addProduct, clearDoc } from '../redux/product/actions.js';
 
-import './fillingForm.scss';
+import s from './fillingForm.module.scss';
 
 class FillingForm extends Component {
   render() {
     const { 
       addDate, 
       addProduct, 
+      addNumber,
+      addToWhom,
+      addFromWhom,
       documentHeader, 
       products, 
       allProducts,
@@ -23,11 +31,15 @@ class FillingForm extends Component {
     } = this.props;
 
     return (
-      <div className='fillingForm'> 
+      <div className={s.fillingForm}> 
         <Form 
           addDate={addDate}
+          addNumber={addNumber}
+          addToWhom={addToWhom}
+          addFromWhom={addFromWhom}
           addProduct={addProduct}
           allProducts={allProducts}
+          documentHeader={documentHeader}
         />
         <Document 
           documentHeader={documentHeader}
@@ -48,6 +60,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators({
     addDate,
+    addNumber,
+    addToWhom,
+    addFromWhom,
     addProduct,
     clearDoc,
   }, dispatch);
