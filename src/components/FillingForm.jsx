@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
-import Form from './Form/Form.js';
-import Document from './Document/Document.js';
+import Form from './Form';
+import Document from './Document';
 
 import { 
   addDate, 

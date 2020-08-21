@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import s from './listOfGoods.module.scss'
+import s from './listOfGoods.module.scss';
 
 class Goods extends Component {
   render() {

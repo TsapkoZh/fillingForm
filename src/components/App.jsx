@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import FillingForm from './FillingForm.js';
+import FillingForm from './FillingForm';
 
 class App extends Component {
 	render() {

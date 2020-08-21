@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import s from './form.module.scss'
+import s from './form.module.scss';
 
 class GoodsForm extends Component {
   state = {

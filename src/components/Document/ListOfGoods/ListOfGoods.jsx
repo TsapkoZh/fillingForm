@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Goods from './Goods.js'
+import Goods from './Goods';
 
-import s from './listOfGoods.module.scss'
+import s from './listOfGoods.module.scss';
 
 class ListOfGoods extends Component {
 

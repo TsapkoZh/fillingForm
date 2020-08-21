@@ -4,7 +4,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { devToolsEnhancer } from 'redux-devtools-extension';
 
-import App from './components/App.js';
+import App from './components/App';
 import rootReducer from './redux/rootReducer.js';
 
 const persistedState = localStorage.getItem('reduxState') 

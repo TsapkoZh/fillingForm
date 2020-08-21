@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import HeaderForm from './HeaderForm.js';
-import GoodsForm from './GoodsForm.js';
+import HeaderForm from './HeaderForm';
+import GoodsForm from './GoodsForm';
 
-import s from './form.module.scss'
+import s from './form.module.scss';
 
 class Form extends Component {
   render() {

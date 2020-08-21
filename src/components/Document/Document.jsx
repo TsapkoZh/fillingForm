@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Header from './Header/Header.js';
-import ListOfGoods from './ListOfGoods/ListOfGoods.js'
-import Footer from './Footer/Footer.js'
+import Header from './Header/Header';
+import ListOfGoods from './ListOfGoods';
+import Footer from './Footer';
 
-import s from './document.module.scss'
+import s from './document.module.scss';
 
 class Document extends Component {
   render() {

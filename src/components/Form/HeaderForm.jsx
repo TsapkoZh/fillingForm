@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import s from './form.module.scss'
+import s from './form.module.scss';
 
 class HeaderForm extends Component {
   state = {
@@ -118,6 +118,7 @@ class HeaderForm extends Component {
           <input
             name='date'
             type='date'
+            max="2050-12-31"
             onChange={this.handleChange}
 					  className={dateValid ? `${s.entryField} ${s.entryFieldTrue}` : `${s.entryField}`}
           />
