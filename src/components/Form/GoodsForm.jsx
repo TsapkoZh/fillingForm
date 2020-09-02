@@ -21,64 +21,72 @@ class GoodsForm extends Component {
                   () => { this.validateField(nam, val) })
   }
 
+  validErrorText = value => {
+    const { formErrors } = this.state;
+
+    let errorText = '';
+
+    if (value <= 0) {
+      errorText = 'Введите цену*'
+    }
+    if (this.countDecimals(value) > 2) {
+      errorText = 'Не больше двух знаков после запятой*'
+    }
+
+    this.setState({             
+      formErrors: {
+        ...formErrors,
+        price: errorText,
+       },
+    })
+  }
+
+  countDecimals = value => {
+    if(Math.floor(value) === value) return 0;
+    return value.toString().split(".")[1] || 0;
+  }
+
   validateField = (fieldName, value)  => {
-    let fieldValidationErrors = this.state.formErrors;
-    let nameProductValid = this.state.nameProductValid;
-    let quantityValid = this.state.quantityValid;
-    let priceValid = this.state.priceValid;
+    const { formErrors } = this.state;
 
     switch (fieldName) {
-      case 'nameProduct':
-        if (value || !value) {
-          nameProductValid = value.length >= 1;
-          fieldValidationErrors.nameProduct = nameProductValid ? '' : 'Введите наименование товара*';
-        }
-        break;
+      case 'nameProduct': {
+        const isValid = value.length >= 1;
 
-      case 'quantity':
-        if (value.length > 5) {
-          quantityValid = false;
-        } else if (value || !value) {
-          quantityValid = value > 0;
-          fieldValidationErrors.quantity = quantityValid ? '' : 'Введите количество*';
-        }
-        break;
+        this.setState({ 
+          formErrors: {
+            ...formErrors,
+            nameProduct: isValid ? '' : 'Введите наименование товара*',
+          },
+          nameProductValid: isValid,
+        });
+        break;}
 
-      case 'price':
-        const f = x => ( (x.toString().includes('.')) ? (x.toString().split('.').pop().length) : (0) );
+      case 'quantity': {
+        const isValid = value > 0;
 
-        if (f(value) > 2) {
-          priceValid = false;
-          fieldValidationErrors.price = 'Не больше двух знаков после запятой*';
-        } else if (value || !value) {
-          priceValid = value > 0;
-          fieldValidationErrors.price = priceValid ? '' : 'Введите цену*';
-        }
-        break;
+        this.setState({ 
+          formErrors: {
+            ...formErrors,
+            quantity: isValid ? '' : 'Введите количество*',
+          },
+          quantityValid: isValid,
+        });
+        break;}
+
+        case 'price': {
+          const isValid = value > 0 && this.countDecimals(value) < 2;
+
+          this.validErrorText(value)
+          
+          this.setState({ 
+            priceValid: isValid,
+          });
+          break;}
 
       default:
         break;
     }
-
-    this.setState({formErrors: fieldValidationErrors,
-      nameProductValid: nameProductValid,
-      quantityValid: quantityValid,
-      priceValid: priceValid,
-    }, this.validateForm);
-  }
-
-  validateForm() {
-    const {
-      nameProductValid,
-      quantityValid,
-      priceValid,
-    } = this.state;
-
-    this.setState({formValid: 
-                    nameProductValid && 
-                    quantityValid &&
-                    priceValid
-                  });
   }
 
   handleSubmit = event => {
@@ -109,13 +117,14 @@ class GoodsForm extends Component {
   render() {
     const {
       formErrors,
-      formValid,
       nameProductValid,
       quantityValid,
       priceValid,
     } = this.state;
 
-    const { allProducts } = this.props;
+    const { quantityProducts } = this.props;
+
+    const formValid = nameProductValid && quantityValid && priceValid;
 
     return (
         <form 
@@ -160,12 +169,12 @@ class GoodsForm extends Component {
 
         <button 
           onClick={this.handleSubmit}
-          disabled={!formValid || allProducts > 19}
-          className={!formValid || allProducts > 19 ?  `${s.btnWriteDown} ${s.btnWriteDownDisable}` : `${s.btnWriteDown} ${s.btnWriteDownActive}`}
+          disabled={!formValid || quantityProducts > 19}
+          className={!formValid || quantityProducts > 19 ?  `${s.btnWriteDown} ${s.btnWriteDownDisable}` : `${s.btnWriteDown} ${s.btnWriteDownActive}`}
         >
           добавить товар
         </button>
-        <p className={allProducts > 19 ? `${s.error} ${s.errorBtn}` : `${s.hideBtnError}`}>
+        <p className={quantityProducts > 19 ? `${s.error} ${s.errorBtn}` : `${s.hideBtnError}`}>
           Не больше двадцати наименований*
         </p>
       </form>

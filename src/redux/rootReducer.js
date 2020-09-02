@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 
-import documentHeaderReducer from "./documentHeader/documentHeaderReducer.js";
-import productReducer from "./product/productReducer.js";
+import formHeaderReducer from "./documentHeader/formHeaderReducer.js";
+import formProductsReducer from "./product/formProductsReducer.js";
 
 export default combineReducers({
-	documentHeader: documentHeaderReducer,
-	products: productReducer,
+	documentHeader: formHeaderReducer,
+	products: formProductsReducer,
 })

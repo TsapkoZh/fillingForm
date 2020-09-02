@@ -26,7 +26,7 @@ class FillingForm extends Component {
       addFromWhom,
       documentHeader, 
       products, 
-      allProducts,
+      quantityProducts,
       clearDoc, 
     } = this.props;
 
@@ -38,7 +38,7 @@ class FillingForm extends Component {
           addToWhom={addToWhom}
           addFromWhom={addFromWhom}
           addProduct={addProduct}
-          allProducts={allProducts}
+          quantityProducts={quantityProducts}
           documentHeader={documentHeader}
         />
         <Document 
@@ -54,7 +54,7 @@ class FillingForm extends Component {
 const mapStateToProps = state => ({
   documentHeader: state.documentHeader,
   products: state.products,
-  allProducts: state.products.length,
+  quantityProducts: state.products.length,
 });
 
 const mapDispatchToProps = dispatch =>
@@ -70,7 +70,7 @@ const mapDispatchToProps = dispatch =>
   FillingForm.propTypes = {
     addDate: PropTypes.func,
     addProduct: PropTypes.func,
-	  allProducts: PropTypes.number.isRequired,
+	  quantityProducts: PropTypes.number.isRequired,
     documentHeader: PropTypes.shape({
       date: PropTypes.string,
       number: PropTypes.string,

@@ -14,21 +14,21 @@ class Form extends Component {
     addToWhom,
     addFromWhom,
     addProduct, 
-    allProducts, 
+    quantityProducts, 
   } = this.props;
 
     return (
       <div className={s.formWrapper}>
-          <HeaderForm 
-            addDate={addDate}
-            addNumber={addNumber}
-            addToWhom={addToWhom}
-            addFromWhom={addFromWhom}
-          />
-          <GoodsForm 
-            addProduct={addProduct}
-            allProducts={allProducts}
-          />
+        <HeaderForm 
+          addDate={addDate}
+          addNumber={addNumber}
+          addToWhom={addToWhom}
+          addFromWhom={addFromWhom}
+        />
+        <GoodsForm 
+          addProduct={addProduct}
+          quantityProducts={quantityProducts}
+        />
       </div>
     ) 
   }
@@ -40,7 +40,7 @@ Form.propTypes = {
   addToWhom: PropTypes.func,
   addFromWhom: PropTypes.func,
   addProduct: PropTypes.func,
-  allProducts: PropTypes.number.isRequired,
+  quantityProducts: PropTypes.number.isRequired,
 }
 
 export default Form;

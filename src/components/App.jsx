@@ -5,9 +5,7 @@ import FillingForm from './FillingForm';
 class App extends Component {
 	render() {
 		return (
-			<div>
-				<FillingForm />
-			</div>
+			<FillingForm />
 		);
 	}
 }

@@ -26,52 +26,68 @@ class HeaderForm extends Component {
   }
 
   validateField(fieldName, value) {
-    let fieldValidationErrors = this.state.formErrors;
-    let dateValid = this.state.dateValid;
-    let numberValid = this.state.numberValid;
-    let toWhomValid = this.state.toWhomValid;
-    let fromWhomValid = this.state.fromWhomValid;
+    const { formErrors } = this.state;
 
     switch (fieldName) {
-      case 'date':
-        dateValid = value.length >= 8;
-        fieldValidationErrors.date = dateValid ? '' : 'Введите дату*';
+        case 'date': {
+          const isValid = value.length >= 8;
+  
+          this.setState({ 
+            formErrors: {
+              ...formErrors,
+              date: isValid ? '' : 'Введите дату*',
+            },
+            dateValid: isValid,
+          });
 
-        this.handleKeyPressDate()
-        break;
+          this.handleKeyPressDate()
+          break;}
 
-      case 'number':
-        if (value || !value) {
-          numberValid = value >= 1;
-          fieldValidationErrors.number = numberValid ? '' : 'Введите номер (больше ноля)*';
-        }
+      case 'number': {
+        const isValid = value >= 1;
+
+        this.setState({ 
+          formErrors: {
+            ...formErrors,
+            number: isValid ? '' : 'Введите номер (больше ноля)*',
+          },
+          numberValid: isValid,
+        });
 
         this.handleKeyPressNumber()
-        break;
+        break;}
+        
+      case 'toWhom': {
+        const isValid = value.length >= 2;
 
-      case 'toWhom':
-        if (value.length) {
-          toWhomValid = value.length >= 2;
-          fieldValidationErrors.toWhom = toWhomValid ? '' : 'Не короче двух символов*';
-        }
+        this.setState({ 
+          formErrors: {
+            ...formErrors,
+            toWhom: isValid ? '' : 'Не короче двух символов*',
+          },
+          toWhomValid: isValid,
+        });
 
         this.handleKeyPressToWhom()
-        break;
+        break;}
 
-      case 'fromWhom':
+      case 'fromWhom': {
+        const isValid = value.length >= 2;
 
-        if (value.length) {
-          fromWhomValid = value.length >= 2;
-          fieldValidationErrors.fromWhom = fromWhomValid ? '' : 'Не короче двух символов*';
-        }
+        this.setState({ 
+          formErrors: {
+            ...formErrors,
+            fromWhom: isValid ? '' : 'Не короче двух символов*',
+          },
+          fromWhomValid: isValid,
+        });
 
         this.handleKeyPressFromWhom()
-        break;
- 
+        break;}
+
       default:
         break;
-    }
-  }
+  }}
 
   handleKeyPressDate = () => {
     const { date } = this.state;
